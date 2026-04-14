@@ -1,0 +1,7 @@
+{
+  "name": "LSASS Memory Access (Mimikatz Style)",
+  "description": "Detects attempts to read LSASS memory for credentials",
+  "aql_query": "SELECT sourceip, \"Process Name\" FROM events WHERE \"Target Process\" ILIKE '%lsass.exe%'",
+  "severity": 10,
+  "mitre_id": "T1003.001"
+}
