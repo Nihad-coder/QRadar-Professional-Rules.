@@ -1,0 +1,7 @@
+{
+  "name": "Office Macro leading to CMD",
+  "description": "Word or Excel launching command prompt (common in phishing)",
+  "aql_query": "SELECT \"Process Name\" FROM events WHERE \"Parent Process Name\" ILIKE '%winword.exe%' AND \"Process Name\" ILIKE '%cmd.exe%'",
+  "severity": 9,
+  "mitre_id": "T1204.002"
+}
