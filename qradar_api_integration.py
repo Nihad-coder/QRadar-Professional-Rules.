@@ -2,13 +2,12 @@ import requests
 import json
 import os
 
-# QRadar Bağlantı Məlumatları
-# QRadar Bağlantı Məlumatları
-QRADAR_IP = "YOUR_QRADAR_IP"  # 16.16.141.142
-API_TOKEN = "YOUR_API_TOKEN"  # f55c9495-c441-4a73-b69b-1dd6044ccabe
+# Secrets-dəki adlarla eyni olmalıdır:
+QRADAR_IP = os.environ.get('QRADAR_IPV4')
+QRADAR_TOKEN = os.environ.get('QRADAR_TOKEN6')
 
 headers = {
-    'SEC': API_TOKEN,
+    'SEC': QRADAR_TOKEN, # Bura diqqət, yuxarıdakı dəyişən adı ilə eyni olmalıdır
     'Content-Type': 'application/json',
     'Accept': 'application/json'
 }
