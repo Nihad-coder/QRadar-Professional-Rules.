@@ -1,0 +1,7 @@
+{
+  "name": "Persistence: Scheduled Task Creation",
+  "description": "Detection of new scheduled tasks for persistence",
+  "aql_query": "SELECT \"Process Command Line\" FROM events WHERE qid = 5000910 OR \"Process Name\" ILIKE '%schtasks.exe%'",
+  "severity": 7,
+  "mitre_id": "T1053.005"
+}
