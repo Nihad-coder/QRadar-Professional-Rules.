@@ -1,0 +1,7 @@
+{
+  "name": "Internal Port Scanning Detection",
+  "description": "A single internal host connecting to more than 50 different ports in 1 minute",
+  "aql_query": "SELECT sourceip, count(DISTINCT destinationport) FROM events GROUP BY sourceip HAVING count(DISTINCT destinationport) > 50 LAST 1 MINUTES",
+  "severity": 5,
+  "mitre_id": "T1046"
+}
