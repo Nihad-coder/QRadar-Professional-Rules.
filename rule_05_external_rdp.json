@@ -1,0 +1,7 @@
+{
+  "name": "RDP Connection from External IP",
+  "description": "Inbound RDP from outside the local network",
+  "aql_query": "SELECT sourceip, destinationip FROM events WHERE destinationport = 3389 AND NOT INCIDR('192.168.0.0/16', sourceip)",
+  "severity": 6,
+  "mitre_id": "T1133"
+}
