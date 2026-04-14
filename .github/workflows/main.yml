@@ -1,0 +1,22 @@
+name: QRadar Rule Validator
+
+on: [push] # Hər dəfə kod yükləyəndə işə düşsün
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodu GitHub-dan çək
+      uses: actions/checkout@v2
+
+    - name: Python mühitini qur
+      uses: actions/setup-python@v2
+      with:
+        python-state: '3.x'
+
+    - name: Kitabxanaları yüklə
+      run: pip install requests
+
+    - name: Skripti yoxla (Syntax Check)
+      run: python -m py_compile qradar_api_integration.py
