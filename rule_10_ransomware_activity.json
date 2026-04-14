@@ -1,0 +1,7 @@
+{
+  "name": "Potential Ransomware File Activity",
+  "description": "Massive file modification or deletion in a short period",
+  "aql_query": "SELECT sourceip, count(*) FROM events WHERE (\"Event ID\" = 4663 OR \"Event ID\" = 4660) GROUP BY sourceip HAVING count(*) > 100 LAST 1 MINUTES",
+  "severity": 10,
+  "mitre_id": "T1486"
+}
