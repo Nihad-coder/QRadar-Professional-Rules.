@@ -1,0 +1,62 @@
+[
+  {
+    "rule_name": "PRO: Ransomware File Activity",
+    "description": "Massive file modification or deletion (Event ID 4663, 4660)",
+    "mitre_id": "T1485",
+    "severity": 10
+  },
+  {
+    "rule_name": "PRO: Brute Force Attack Detected",
+    "description": "Multiple failed logins from same source (Event ID 4625)",
+    "mitre_id": "T1110",
+    "severity": 8
+  },
+  {
+    "rule_name": "PRO: PowerShell Encoded Command",
+    "description": "PowerShell execution with base64 encoded commands",
+    "mitre_id": "T1059.001",
+    "severity": 9
+  },
+  {
+    "rule_name": "PRO: LSASS Memory Dump (Cred Theft)",
+    "description": "Process access to LSASS for credential dumping",
+    "mitre_id": "T1003.001",
+    "severity": 10
+  },
+  {
+    "rule_name": "PRO: Domain Admin Group Change",
+    "description": "New member added to Domain Admins group",
+    "mitre_id": "T1098",
+    "severity": 10
+  },
+  {
+    "rule_name": "PRO: Internal Network Port Scan",
+    "description": "Source IP scanning multiple destination ports",
+    "mitre_id": "T1046",
+    "severity": 7
+  },
+  {
+    "rule_name": "PRO: External RDP Brute Force",
+    "description": "Failed RDP login attempts from external IP",
+    "mitre_id": "T1110.001",
+    "severity": 9
+  },
+  {
+    "rule_name": "PRO: Persistence - Scheduled Task",
+    "description": "New scheduled task creation (Event ID 4698)",
+    "mitre_id": "T1053.005",
+    "severity": 6
+  },
+  {
+    "rule_name": "PRO: Malicious Office Macro",
+    "description": "Office applications launching CMD or PowerShell",
+    "mitre_id": "T1204.002",
+    "severity": 9
+  },
+  {
+    "rule_name": "PRO: Potential DNS Tunneling",
+    "description": "Unusual DNS traffic volume for data exfiltration",
+    "mitre_id": "T1071.004",
+    "severity": 8
+  }
+]
