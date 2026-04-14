@@ -1,0 +1,7 @@
+{
+  "name": "Brute Force Success Detection",
+  "description": "Multiple login failures followed by a success from the same IP",
+  "aql_query": "SELECT username, sourceip FROM events WHERE qid = 5000128 GROUP BY username HAVING count(*) > 10 LAST 5 MINUTES",
+  "severity": 7,
+  "mitre_id": "T1110"
+}
