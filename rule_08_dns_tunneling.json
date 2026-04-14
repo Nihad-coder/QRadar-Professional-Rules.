@@ -1,0 +1,7 @@
+{
+  "name": "DNS Tunneling (Anomalous TXT Record)",
+  "description": "Detects large DNS queries often used for data exfiltration",
+  "aql_query": "SELECT sourceip, query FROM events WHERE qid = 5001050 AND query_length > 100",
+  "severity": 8,
+  "mitre_id": "T1071.004"
+}
