@@ -1,6 +1,6 @@
 name: QRadar Rule Validator
 
-on: [push] # Hər dəfə kod yükləyəndə işə düşsün
+on: [push]
 
 jobs:
   build:
@@ -13,10 +13,13 @@ jobs:
     - name: Python mühitini qur
       uses: actions/setup-python@v2
       with:
-        python-state: '3.x'
+        python-version: '3.x'
 
     - name: Kitabxanaları yüklə
       run: pip install requests
 
-    - name: Skripti yoxla (Syntax Check)
-      run: python -m py_compile qradar_api_integration.py
+    - name: Skripti işə sal (Deploy to QRadar)
+      env:
+        QRADAR_IPV4: ${{ secrets.QRADAR_IPV4 }}
+        QRADAR_TOKEN6: ${{ secrets.QRADAR_TOKEN6 }}
+      run: python qradar_api_integration.py
