@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content_export>
+    <custom_rule>
+        <name>PRO: Potential Ransomware Activity</name>
+        <test_definitions>
+            <test_definition>
+                <id>2001</id>
+                <text>when the event(s) match the following AQL query: SELECT sourceip FROM events WHERE ("Event ID" = 4663 OR "Event ID" = 4660) GROUP BY sourceip HAVING count(*) > 50 LAST 2 MINUTES</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>10</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: Brute Force Success after Multiple Failures</name>
+        <test_definitions>
+            <test_definition>
+                <id>2002</id>
+                <text>when the event(s) match the following AQL query: SELECT sourceip FROM events WHERE ("Event ID" = 4625) GROUP BY sourceip HAVING count(*) > 10 LAST 5 MINUTES</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>8</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: PowerShell Encoded Execution</name>
+        <test_definitions>
+            <test_definition>
+                <id>2003</id>
+                <text>when the event(s) match the following AQL query: SELECT * FROM events WHERE ("Process Name" ILIKE '%powershell.exe%' AND "Process Command Line" ILIKE '%-enc%')</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>9</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: LSASS Memory Dump Detected</name>
+        <test_definitions>
+            <test_definition>
+                <id>2004</id>
+                <text>when the event(s) match the following AQL query: SELECT * FROM events WHERE ("Process Name" ILIKE '%procdump%' OR "Process Command Line" ILIKE '%lsass%')</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>10</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: Domain Admin Group Member Added</name>
+        <test_definitions>
+            <test_definition>
+                <id>2005</id>
+                <text>when the event(s) match the following AQL query: SELECT * FROM events WHERE ("Event ID" = 4728 OR "Event ID" = 4732) AND ("Group Name" ILIKE '%Admin%')</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>10</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: Internal Port Scan Detected</name>
+        <test_definitions>
+            <test_definition>
+                <id>2006</id>
+                <text>when the event(s) match the following AQL query: SELECT sourceip FROM events GROUP BY sourceip, destinationip HAVING count(DISTINCT destinationport) > 20 LAST 1 MINUTES</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>7</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: External RDP Brute Force</name>
+        <test_definitions>
+            <test_definition>
+                <id>2007</id>
+                <text>when the event(s) match the following AQL query: SELECT sourceip FROM events WHERE ("Destination Port" = 3389 AND "Event ID" = 4625) GROUP BY sourceip HAVING count(*) > 15 LAST 10 MINUTES</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>9</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: Suspicious Scheduled Task Created</name>
+        <test_definitions>
+            <test_definition>
+                <id>2008</id>
+                <text>when the event(s) match the following AQL query: SELECT * FROM events WHERE ("Event ID" = 4698)</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>6</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: Malicious Office Macro Activity</name>
+        <test_definitions>
+            <test_definition>
+                <id>2009</id>
+                <text>when the event(s) match the following AQL query: SELECT * FROM events WHERE ("Parent Process Name" ILIKE '%winword.exe%' OR "Parent Process Name" ILIKE '%excel.exe%') AND ("Process Name" ILIKE '%cmd.exe%' OR "Process Name" ILIKE '%powershell.exe%')</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>9</severity></rule_response></rule_responses>
+    </custom_rule>
+
+    <custom_rule>
+        <name>PRO: Potential DNS Tunneling</name>
+        <test_definitions>
+            <test_definition>
+                <id>2010</id>
+                <text>when the event(s) match the following AQL query: SELECT sourceip FROM events WHERE ("Destination Port" = 53) GROUP BY sourceip HAVING sum(payload_size) > 1000000 LAST 1 HOURS</text>
+            </test_definition>
+        </test_definitions>
+        <rule_responses><rule_response><offense_creation><enabled>true</enabled><offense_index>sourceip</offense_index></offense_creation><severity>8</severity></rule_response></rule_responses>
+    </custom_rule>
+</content_export>
