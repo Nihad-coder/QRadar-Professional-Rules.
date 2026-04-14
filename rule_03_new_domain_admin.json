@@ -1,0 +1,7 @@
+{
+  "name": "New Domain Admin Account Created",
+  "description": "Alerts when a user is added to the Domain Admins group",
+  "aql_query": "SELECT username, \"Target UserName\" FROM events WHERE qid = 5000845 AND \"Target Group Name\" ILIKE '%Admin%'",
+  "severity": 9,
+  "mitre_id": "T1078.002"
+}
